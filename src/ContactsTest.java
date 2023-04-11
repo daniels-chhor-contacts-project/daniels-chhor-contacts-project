@@ -13,7 +13,7 @@ public class ContactsTest {
         loadContacts();
 
         Scanner input = new Scanner(System.in);
-
+//while loop for mennu
         while (true) {
             System.out.println("\nContacts Manager");
             System.out.println("-----------------");
@@ -22,10 +22,9 @@ public class ContactsTest {
             System.out.println("3. Search a contact by name");
             System.out.println("4. Delete an existing contact");
             System.out.println("5. Exit");
-
             System.out.print("\nEnter your choice: ");
             int choice = input.nextInt();
-
+//switch case for each choice on menu
             switch (choice) {
                 case 1:
                     showContacts();
@@ -49,19 +48,20 @@ public class ContactsTest {
             }
         }
     }
-
+//method to show contacts
     private static void showContacts() {
+//        if no contacts on file
         if (contacts.isEmpty()) {
             System.out.println("\nNo contacts found!");
             return;
         }
-
+//for loop to loop through contacts if on file
         System.out.println("\nName | Phone Number");
         for (int i = 0; i < contacts.size(); i++) {
             System.out.println((i + 1) + ". " + contacts.get(i));
         }
     }
-
+//adding contact method
     private static void addContact(Scanner input) {
         System.out.print("\nEnter the first name of the new contact: ");
         String firstName = input.next();
@@ -73,13 +73,14 @@ public class ContactsTest {
         contacts.add(contact);
         System.out.println("\nContact added successfully!");
     }
-
+//method to search for contacts
     private static void searchContact(Scanner input) {
         System.out.print("\nEnter the name of the contact to search: ");
         String searchName = input.next().toLowerCase();
-
+//splitting first last
         for (String contact : contacts) {
             String[] nameParts = contact.split(" ");
+//            to make not case sensitive
             String firstName = nameParts[0].toLowerCase();
             String lastName = nameParts[1].toLowerCase();
             if (firstName.equals(searchName) || lastName.equals(searchName)) {
@@ -90,7 +91,7 @@ public class ContactsTest {
 
         System.out.println("\nContact not found!");
     }
-
+//deleting contact method
     private static void deleteContact(Scanner input) {
         if (contacts.isEmpty()) {
             System.out.println("\nNo contacts found to delete!");
@@ -108,7 +109,7 @@ public class ContactsTest {
         String deletedContact = contacts.remove(index - 1);
         System.out.println("\nContact deleted successfully: " + deletedContact);
     }
-
+//loading contacts from file path
     private static void loadContacts() {
         try {
             Path filePath = Paths.get("contacts.txt");
@@ -126,7 +127,7 @@ public class ContactsTest {
             System.out.println("Error loading contacts from file: " + e.getMessage());
         }
     }
-
+//saving contacts to file path
     private static void saveContacts() {
         try {
             FileWriter writer = new FileWriter("contacts.txt");
