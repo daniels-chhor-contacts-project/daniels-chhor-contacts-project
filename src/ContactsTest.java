@@ -129,7 +129,7 @@ public class ContactsTest {
 
     private static void saveContacts() {
         try {
-            FileWriter writer = new FileWriter("contacts.txt", true);
+            FileWriter writer = new FileWriter("contacts.txt");
             for (String contact : contacts) {
                 writer.write(contact + "\n");
             }
