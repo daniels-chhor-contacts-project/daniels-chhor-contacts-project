@@ -1,5 +1,9 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ContactsTest {
@@ -52,7 +56,7 @@ public class ContactsTest {
             return;
         }
 
-        System.out.println("\nContacts:");
+        System.out.println("\nName | Phone Number");
         for (int i = 0; i < contacts.size(); i++) {
             System.out.println((i + 1) + ". " + contacts.get(i));
         }
@@ -107,26 +111,25 @@ public class ContactsTest {
 
     private static void loadContacts() {
         try {
-            File file = new File("contact.txt");
-            if (!file.exists()) {
+            Path filePath = Paths.get("contacts.txt");
+            if (!Files.exists(filePath)) {
                 return;
             }
 
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+            List<String> lines = Files.readAllLines(filePath);
+            for (String line : lines) {
                 contacts.add(line);
             }
-            scanner.close();
             System.out.println("Contacts loaded successfully from file!");
-        } catch (FileNotFoundException e) {
+
+        } catch (IOException e) {
             System.out.println("Error loading contacts from file: " + e.getMessage());
         }
     }
 
     private static void saveContacts() {
         try {
-            FileWriter writer = new FileWriter("contact.txt");
+            FileWriter writer = new FileWriter("contacts.txt", true);
             for (String contact : contacts) {
                 writer.write(contact + "\n");
             }
