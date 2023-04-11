@@ -72,11 +72,14 @@ public class ContactsTest {
 
     private static void searchContact(Scanner input) {
         System.out.print("\nEnter the name of the contact to search: ");
-        String searchName = input.next();
+        String searchName = input.next().toLowerCase();
 
-        for (String name : contacts) {
-            if (name.equals(searchName)) {
-                System.out.println("\nContact found: " + name);
+        for (String contact : contacts) {
+            String[] nameParts = contact.split(" ");
+            String firstName = nameParts[0].toLowerCase();
+            String lastName = nameParts[1].toLowerCase();
+            if (firstName.equals(searchName) || lastName.equals(searchName)) {
+                System.out.println("\nContact found: " + contact);
                 return;
             }
         }
