@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ContactsTest {
+public class Contacts {
     private static ArrayList<String> contacts = new ArrayList<>();
 
     public static void main(String[] args) {
