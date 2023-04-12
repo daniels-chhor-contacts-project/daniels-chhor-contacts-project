@@ -55,10 +55,14 @@ public class ContactsTest {
             System.out.println("\nNo contacts found!");
             return;
         }
-//for loop to loop through contacts if on file
-        System.out.println("\nName | Phone Number");
+//for loop to loop through contacts if on file * ADDED BONUS
+        System.out.printf("\n%-20s | %-12s\n", "Name (First, Last)", "Phone Number");
+        System.out.println("-------------------------------------");
         for (int i = 0; i < contacts.size(); i++) {
-            System.out.println((i + 1) + ". " + contacts.get(i));
+            String[] contact = contacts.get(i).split("\\|");
+            String name = contact[0].trim();
+            String phone = contact[1].trim();
+            System.out.printf("%-20s | %-12s\n", name, phone);
         }
     }
 //adding contact method
